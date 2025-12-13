@@ -1,4 +1,4 @@
-module mqtt-wp-test
+module mqtt-kafka-connector
 
 go 1.25
 

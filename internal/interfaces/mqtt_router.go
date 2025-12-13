@@ -3,7 +3,7 @@ package interfaces
 import (
 	"strings"
 
-	"mqtt-wp-test/internal/domain"
+	"mqtt-kafka-connector/internal/domain"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 )

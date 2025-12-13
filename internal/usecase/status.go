@@ -2,10 +2,10 @@ package usecase
 
 import (
 	"context"
-	"mqtt-wp-test/internal/infrastructure"
+	"mqtt-kafka-connector/internal/infrastructure"
 	"strings"
 
-	"mqtt-wp-test/internal/domain"
+	"mqtt-kafka-connector/internal/domain"
 )
 
 type StatusProcessor struct {

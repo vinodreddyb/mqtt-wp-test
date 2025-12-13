@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"mqtt-wp-test/internal/domain"
+	"mqtt-kafka-connector/internal/domain"
 )
 
 type Processor interface {

@@ -3,8 +3,8 @@ package usecase
 import (
 	"context"
 	"log/slog"
-	"mqtt-wp-test/internal/domain"
-	"mqtt-wp-test/internal/infrastructure"
+	"mqtt-kafka-connector/internal/domain"
+	"mqtt-kafka-connector/internal/infrastructure"
 	"strings"
 )
 

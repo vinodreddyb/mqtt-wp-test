@@ -9,9 +9,9 @@ import (
 
 	"github.com/google/uuid"
 
-	"mqtt-wp-test/internal/infrastructure"
-	"mqtt-wp-test/internal/interfaces"
-	"mqtt-wp-test/internal/usecase"
+	"mqtt-kafka-connector/internal/infrastructure"
+	"mqtt-kafka-connector/internal/interfaces"
+	"mqtt-kafka-connector/internal/usecase"
 )
 
 func main() {
