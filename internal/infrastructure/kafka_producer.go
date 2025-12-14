@@ -13,12 +13,12 @@ type KafkaProducer struct {
 func NewKafkaProducer(brokers string) (*KafkaProducer, error) {
 	p, err := kafka.NewProducer(&kafka.ConfigMap{
 		"bootstrap.servers": brokers,
-		"security.protocol": "SASL_SSL",
+		/*"security.protocol": "SASL_SSL",
 		"sasl.mechanisms":   "SCRAM-SHA-512",
 		"sasl.username":     "kafka_user",
-		"sasl.password":     "kafkaTest!123",
-		"acks":              "all",
-		"retries":           5,
+		"sasl.password":     "kafkaTest!123",*/
+		"acks":    "all",
+		"retries": 5,
 	})
 	if err != nil {
 		return nil, err

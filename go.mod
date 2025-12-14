@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	golang.org/x/net v0.48.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect

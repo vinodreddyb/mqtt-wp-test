@@ -19,7 +19,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 
 	kafkaProducer, _ := infrastructure.NewKafkaProducer(
-		"b-1.demokafkacluster.63zxci.c5.kafka.us-east-1.amazonaws.com:9096,b-2.demokafkacluster.63zxci.c5.kafka.us-east-1.amazonaws.com:9096",
+		"localhost:9092",
 	)
 	defer kafkaProducer.Close()
 
