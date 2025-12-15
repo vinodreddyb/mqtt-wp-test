@@ -9,11 +9,12 @@ import (
 )
 
 type TelemetryProcessor struct {
-	kafka *infrastructure.KafkaProducer
+	kafka      *infrastructure.KafkaProducer
+	kafkaTopic string
 }
 
 func NewTelemetryProcessor(k *infrastructure.KafkaProducer) *TelemetryProcessor {
-	return &TelemetryProcessor{kafka: k}
+	return &TelemetryProcessor{kafka: k, kafkaTopic: "telemetry"}
 }
 
 func (t *TelemetryProcessor) Process(ctx context.Context, msg domain.Message) error {

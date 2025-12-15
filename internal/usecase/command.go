@@ -9,12 +9,14 @@ import (
 )
 
 type CommandProcessor struct {
-	kafka *infrastructure.KafkaProducer
+	kafka      *infrastructure.KafkaProducer
+	kafkaTopic string
 }
 
 func NewCommandProcessor(k *infrastructure.KafkaProducer) *CommandProcessor {
 	return &CommandProcessor{
-		kafka: k,
+		kafka:      k,
+		kafkaTopic: "command",
 	}
 }
 
@@ -22,7 +24,6 @@ func (c *CommandProcessor) Process(ctx context.Context, msg domain.Message) erro
 	// Example key = deviceId
 	parts := strings.Split(msg.Topic, "/")
 	deviceID := parts[1]
-	topic := parts[len(parts)-1]
 
-	return c.kafka.Publish(ctx, topic, deviceID, msg.Payload)
+	return c.kafka.Publish(ctx, c.kafkaTopic, deviceID, msg.Payload)
 }
