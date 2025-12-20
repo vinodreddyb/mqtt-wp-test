@@ -25,40 +25,33 @@ func main() {
 
 	telemetryUC := usecase.NewTelemetryProcessor(kafkaProducer)
 	statusUC := usecase.NewStatusProcessor(kafkaProducer)
-	commandUC := usecase.NewCommandProcessor(kafkaProducer)
+	commandExUC := usecase.NewCommandExecutorProcess(kafkaProducer)
+	bootUC := usecase.NewBootCmdProcessor(kafkaProducer)
 	telemetryPool := interfaces.NewWorkerPool(
 		"telemetry", 5, 1000, telemetryUC,
 	)
 	statusPool := interfaces.NewWorkerPool(
 		"status", 5, 500, statusUC,
 	)
-	commandPool := interfaces.NewWorkerPool(
-		"command", 5, 100, commandUC,
-	)
+
 	commandExePool := interfaces.NewWorkerPool(
-		"commandExe", 5, 100, commandUC,
+		"cmdexe", 5, 100, commandExUC,
 	)
-	groupPool := interfaces.NewWorkerPool(
-		"group", 5, 100, commandUC,
-	)
+
 	bootPool := interfaces.NewWorkerPool(
-		"boot", 5, 100, commandUC,
+		"boot", 5, 100, bootUC,
 	)
 
 	telemetryPool.Start(ctx, wg)
 	statusPool.Start(ctx, wg)
-	commandPool.Start(ctx, wg)
 	commandExePool.Start(ctx, wg)
-	groupPool.Start(ctx, wg)
 	bootPool.Start(ctx, wg)
 
 	router := interfaces.NewRouter(
 		telemetryPool.Jobs(),
 		statusPool.Jobs(),
-		commandPool.Jobs(),
 		commandExePool.Jobs(),
 		bootPool.Jobs(),
-		groupPool.Jobs(),
 	)
 
 	subs := []string{
@@ -66,8 +59,8 @@ func main() {
 		"$share/telemetry-group/neevrfc/+/+/cmdexe",
 		"$share/telemetry-group/neevrfc/+/+/telemetry",
 		"$share/status-group/neevrfc/+/+/status",
-		"$share/cmd-group/neevrfc/+/+/cmd",
-		"$share/cmd-group/neevrfc/group/+/cmd",
+		//"$share/cmd-group/neevrfc/+/+/cmd",
+		//"$share/cmd-group/neevrfc/group/+/cmd",
 	}
 
 	client := infrastructure.NewMQTTClient(
